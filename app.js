@@ -2,7 +2,7 @@
 const express = require('express');
 const axios = require('axios');
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const cors = require('cors');
 
 const SHEET_ID = '161LN8Fiwe8YSsOnC6itWv7sWLQAJXy_DOGSXG-w1P8I';
@@ -21,6 +21,7 @@ app.get('/a', async (req, res) => {
     );
 
     res.json(rows); // 🔁 전체 데이터 그대로 응답
+    console.log(rows)
   } catch (error) {
     console.error('Error fetching sheet:', error.message);
     res.status(500).json({ error: 'Failed to fetch Google Sheet data' });
